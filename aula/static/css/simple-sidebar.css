@@ -25,7 +25,6 @@
     width: 10%;
     height: 100%;
     margin-left: -250px;
-    overflow-y: auto;
     background: #000;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -68,7 +67,7 @@
     display: block;
     text-decoration: none;
     /*Text*/
-    color: #999999;
+    color: #adadad;
 }
 
 .sidebar-nav li a:hover {
@@ -84,8 +83,9 @@
 
 .sidebar-nav > .sidebar-brand {
     height: 65px;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 60px;
+    font-weight: bold;
 }
 
 .sidebar-nav > .sidebar-brand a {
@@ -108,7 +108,7 @@
     }
 
     #sidebar-wrapper {
-        width: 150px;
+        width: 200px;
     }
 
     #wrapper.toggled #sidebar-wrapper {
