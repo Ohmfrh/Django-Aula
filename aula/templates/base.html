@@ -23,19 +23,19 @@
             </li>
             <div class="menu">
                 <li class="brightness">
-                    <a href="#"><img src="{% static 'img/homealt.png' %}"><span>Dashboard</span></a>
+                    <a href="{% url 'home:index' %}"><img src="{% static 'img/homealt.png' %}"><span>Dashboard</span></a>
                 </li>
                 <li class="brightness">
-                    <a href="#"><img src="{% static 'img/usersalt.png' %}"><span>Usuarios</span></a>
+                    <a href="{% url 'usuarios:index' %}"><img src="{% static 'img/usersalt.png' %}"><span>Usuarios</span></a>
                 </li>
                 <li class="brightness">
-                    <a href="#"><img src="{% static 'img/signsalt.png' %}"><span>Identificación</span></a>
+                    <a href="{% url 'identificacion:index' %}"><img src="{% static 'img/signsalt.png' %}"><span>Identificación</span></a>
                 </li>
                 <li class="brightness">
-                    <a href="#"><img src="{% static 'img/musicalt.png' %}"><span>Audio</span></a>
+                    <a href="{% url 'musica:index' %}"><img src="{% static 'img/musicalt.png' %}"><span>Audio</span></a>
                 </li>
                 <li class="brightness">
-                    <a href="#"><img src="{% static 'img/imagesalt.png' %}"><span>Imágenes</span></a>
+                    <a href="{% url 'imagenes:index' %}"><img src="{% static 'img/imagesalt.png' %}"><span>Imágenes</span></a>
                 </li>
                 <li class="logout brightness">
                     <a href="#"><img src="{% static 'img/logoutalt.png' %}"><span>Logout</span></a>
