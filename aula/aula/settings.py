@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'home',
     'usuarios',
     'identificacion',
-    'audio',
+    'musica',
     'imagenes',
     'django.contrib.admin',
     'django.contrib.auth',
