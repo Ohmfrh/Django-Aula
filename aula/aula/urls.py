@@ -20,5 +20,7 @@ urlpatterns = [
     url(r'^home/', include('home.urls', namespace='home', app_name='home')),
     url(r'^usuarios/', include('usuarios.urls', namespace='usuarios', app_name='usuarios')),
     url(r'^identificacion/', include('identificacion.urls', namespace='identificacion', app_name='identificacion')),
+    url(r'^musica/', include('musica.urls', namespace='musica', app_name='musica')),
+    url(r'^imagenes/', include('imagenes.urls', namespace='imagenes', app_name='imagenes')),
     url(r'^admin/', admin.site.urls),
 ]
