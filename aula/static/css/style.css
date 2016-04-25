@@ -1,0 +1,32 @@
+.logout {
+    padding-top: 100px;
+}
+
+.menu li {
+    margin-top: 30px;
+}
+
+.menu li span {
+    margin-left: 15px;
+    font-size: 18px;
+    color: white;
+}
+
+.brightness {
+    -webkit-filter: brightness(0.7);
+    filter: brightness(0.5);
+}
+
+.brightness:hover {
+    -webkit-filter: brightness(1);
+    filter: brightness(0.5);
+}
+
+.notes {
+    /*min-height: 1000px;*/
+    height: 40px;
+    background: #838383;
+    margin-left: -25px;
+    margin-top: -20px;
+    color: white;
+}
