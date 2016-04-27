@@ -50,10 +50,11 @@ td, th {
     text-align: left;
 }
 
-.left {
-    padding: 33px;
+.content {
+    padding: 50px;
 }
 
-.right {
-    padding: 33px;
+.title {
+margin-left: -30px;
 }
+
