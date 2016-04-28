@@ -76,12 +76,45 @@
 
     function resizeNotes() {
         var width = $(window).width();
-        console.log(width);
         $('.notes').width(width-195);
     }
-
 </script>
+<script>
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+    console.log('Hola');
+    $('#new-user').click(addUser);
+    vardata= "test";
 
+
+    function addUser() {
+        console.log('Add');
+        $.post( "/usuarios/nuevo/", function( data ) {
+            console.log('success');
+        });
+    }
+</script>
 </body>
 </body>
 </html>
