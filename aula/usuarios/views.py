@@ -8,4 +8,10 @@ def index(request):
 
     return render(request, 'usuarios/index.html', context)
 
+def nuevo(request):
+    #print request
+    print "NUEVOOO"
+    users = Usersys.objects.all()
+    context = {'users': users}
 
+    return render(request, 'usuarios/index.html', context)
