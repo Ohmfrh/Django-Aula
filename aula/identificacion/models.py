@@ -7,7 +7,7 @@ from usuarios.models import Usersys
 # Create your models here.
 class Identify(models.Model):
     string = models.CharField(max_length=255)
-    usersys = models.ForeignKey(Usersys, on_delete=models.CASCADE, default=None)
+    usersys = models.ForeignKey(Usersys, on_delete=models.CASCADE, default=None, null=True)
 
     def __str__(self):
         return self.name
