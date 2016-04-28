@@ -12,8 +12,8 @@ class NameForm(forms.Form):
         'required': 'Campo requerido',
         'invalid': 'Valores inválidos'
     }
-    your_name = forms.CharField(label='Nombre', max_length=100, error_messages=my_default_errors)
-    last_name = forms.CharField(label='Apellidos', max_length=100, error_messages=my_default_errors)
+    name = forms.CharField(label='Nombre', max_length=100, error_messages=my_default_errors)
+    last_names = forms.CharField(label='Apellidos', max_length=100, error_messages=my_default_errors)
     email = forms.CharField(label='Correo', max_length=100, error_messages=my_default_errors, widget=forms.EmailInput)
 
     helper = FormHelper()

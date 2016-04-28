@@ -17,7 +17,15 @@ def index(request):
 
         # check whether it's valid:
         if form.is_valid():
-            print request.POST
+            print request.POST['name']
+            print request.POST['last_names']
+            print request.POST['email']
+            try:
+                newUser = Usersys(name=request.POST['name'], last_names=request.POST['last_names'], email=request.POST['email'])
+                newUser.save()
+            except:
+                print ":("
+
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
