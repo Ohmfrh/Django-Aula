@@ -105,14 +105,12 @@
     });
     console.log('Hola');
     $('#new-user').click(addUser);
-    vardata= "test";
+    var data= {name:"Prueba", last_name:"Prueba_Apellido"};
 
 
     function addUser() {
         console.log('Add');
-        $.post( "/usuarios/nuevo/", function( data ) {
-            console.log('success');
-        });
+        $.post( "/usuarios/nuevo/",data);
     }
 </script>
 </body>
