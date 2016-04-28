@@ -11,7 +11,7 @@ class Usersys(models.Model):
     TODAY = timezone.now().date()
     name = models.CharField(max_length=50)
     last_names = models.CharField(max_length=100)
-    date_added = models.DateField('Fecha de alta', default=TODAY)
+    date_added = models.DateField('Fecha de alta', auto_now=True)
     email = models.CharField(max_length=100)
     songs = models.ManyToManyField(Song, default=None)
     images = models.ManyToManyField(Image, default=None)
