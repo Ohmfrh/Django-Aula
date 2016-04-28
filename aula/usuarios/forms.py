@@ -14,6 +14,7 @@ class NameForm(forms.Form):
     }
     your_name = forms.CharField(label='Nombre', max_length=100, error_messages=my_default_errors)
     last_name = forms.CharField(label='Apellidos', max_length=100, error_messages=my_default_errors)
+    email = forms.CharField(label='Correo', max_length=100, error_messages=my_default_errors, widget=forms.EmailInput)
 
     helper = FormHelper()
     helper.form_method = 'POST'
