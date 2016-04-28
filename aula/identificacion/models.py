@@ -5,17 +5,17 @@ from usuarios.models import Usersys
 
 
 # Create your models here.
+class Type(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
 class Identify(models.Model):
     string = models.CharField(max_length=255)
     usersys = models.ForeignKey(Usersys, on_delete=models.CASCADE, default=None, null=True)
+    type = models.ForeignKey(Type, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return self.name
-
-
-class Type(models.Model):
-    name = models.CharField(max_length=50)
-    identify = models.ForeignKey(Identify, on_delete=models.CASCADE, blank=True, null=True)
-
-    def __str__(self):
-        return self.name
+        return self.string
