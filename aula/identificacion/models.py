@@ -12,9 +12,10 @@ class Identify(models.Model):
     def __str__(self):
         return self.name
 
-class Type():
+
+class Type(models.Model):
     name = models.CharField(max_length=50)
-    #identify = models.ForeignKey(Identify, on_delete=models.CASCADE)
+    identify = models.ForeignKey(Identify, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.name
