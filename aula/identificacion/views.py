@@ -85,6 +85,10 @@ def identificar(request):
 
 
 def borrar(request):
+    id = request.POST['id']
+    card = Identify.objects.get(pk=id)
+
+    card.delete()
 
     data = 'success'
     return HttpResponse(data)
