@@ -121,6 +121,7 @@
           data = {id: this.name};
           $.post("/identificacion/borrar/", data, function (data) {
             console.log('success');
+            location.reload();
           });
 
 
