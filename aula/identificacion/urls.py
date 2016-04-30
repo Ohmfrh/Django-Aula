@@ -6,4 +6,5 @@ urlpatterns = [
     url('^nuevo/$', views.nuevo, name='nuevo'),
     url('^editar/$', views.editar, name='editar'),
     url('^identificar/$', views.identificar, name='identificar'),
+    url('^borrar/$', views.borrar, name='borrar'),
 ]
