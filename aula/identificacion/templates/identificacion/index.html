@@ -79,6 +79,7 @@
 
     </div>
   </div>
+  <button class="btn">TEST</button>
   <script>
     $('img').click(function () {
       $('#edit-id-content').html('');
@@ -95,34 +96,42 @@
           var colInput = document.createElement('div');
           var colButton = document.createElement('div');
           var input = document.createElement('input');
-          var button = document.createElement('button');
+          var delButton = document.createElement('button');
 
           row.className = 'row';
           colInput.className = 'col-md-6';
           colButton.className = 'col-md-5';
           input.className = 'form-control id-edit-data';
           input.type = 'text';
-          button.className = 'btn btn-danger pull-right';
-          button.innerHTML = 'Borrar';
-
+          delButton.className = 'btn btn-danger pull-right deleteId';
+          delButton.innerHTML = 'Borrar';
+          delButton.name = data[i]['id'];
 
           colInput.appendChild(input);
-          colButton.appendChild(button);
+          colButton.appendChild(delButton);
           row.appendChild(colInput);
           row.appendChild(colButton);
           input.name = data[i]['id'];
           input.value = data[i]['string'];
 
-
           $('#edit-id-content').append(row);
+
         }
+        $('.deleteId').click(function(){
+          data = {id: this.name};
+          $.post("/identificacion/borrar/", data, function (data) {
+            console.log('success');
+          });
+
+
+        });
       });
     });
 
     function send() {
       console.log('Send');
       var cards = [];
-      $('.id-edit-data').each(function (index) {
+      $('.id-edit-data').each(function (index)  {
         console.log(this.value);
         console.log(this.name);
         cards.push({string: this.value, id: this.name});
@@ -136,5 +145,6 @@
       });
 
     }
+
   </script>
 {% endblock %}
