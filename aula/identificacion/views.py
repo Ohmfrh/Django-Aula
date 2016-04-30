@@ -1,4 +1,6 @@
-from django.http import HttpResponseRedirect
+from django.core import serializers
+import json
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from usuarios.models import Usersys
 
@@ -47,3 +49,36 @@ def nuevo(request):
 
     context = {'users': users, 'form': form}
     return render(request, 'identificacion/index.html', context)
+
+
+def editar(request):
+    print "En editar"
+
+    cards = json.loads(request.POST.get('cards'))
+
+    for card in cards:
+        id = card['id']
+        string = card['string']
+        idcard = Identify.objects.get(pk=id)
+        idcard.string = string
+        idcard.save()
+
+
+    return HttpResponseRedirect('/identificacion/', content_type="application/json")
+
+
+def identificar(request):
+    print "En identify"
+    list = []
+    userId = request.GET['userId']
+    idSet = Identify.objects.all()
+    idSet = idSet.filter(usersys=userId)
+
+    for row in idSet:
+        list.append ({'user': row.usersys.name, 'string': row.string, 'id': row.pk})
+
+    # data = serializers.serialize("json", list)
+    data = json.dumps(list)
+
+    # data['user'] = Usersys.objects.get(pk=userId)
+    return HttpResponse(data, content_type='application/json')
