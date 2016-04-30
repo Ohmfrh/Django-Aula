@@ -63,17 +63,51 @@
           </div>
         </div>
       </div>
+
+      <div id="user-image-list" hidden>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn btn-default">Agregar imagen</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <table>
+              <thead>
+              <tr>
+                <th>Imagen</th>
+                <th>Servidor</th>
+                <th>Localización</th>
+              </tr>
+              </thead>
+              <tbody id="full-image-table">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <script>
     function showImageList(){
-      $('#full-image-list').fadeIn('fast', function() {
-        console.log('Done');
+      $('#user-image-list').fadeOut('fast', function (){
+        $('#full-image-list').fadeIn('fast');
       });
+
+
     }
-  function showUserImages(userId){
-    console.log('User: '+userId);
-  }
+    function showUserImages(userId){
+      $('#full-image-list').fadeOut('fast', function() {
+        data = {name:'test'};
+        $.post( "/imagenes/usuario/",data, function (data){
+          console.log('Success');
+          console.log(data)
+        });
+        $('#user-image-list').fadeIn('fast');
+      });
+      console.log('User: '+userId);
+    }
   </script>
 {% endblock %}
