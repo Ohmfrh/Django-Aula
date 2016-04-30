@@ -101,7 +101,7 @@
     function showUserImages(userId){
       $('#full-image-list').fadeOut('fast', function() {
         data = {name:'test'};
-        $.post( "/imagenes/usuario/",data, function (data){
+        $.get( "/imagenes/usuario/",data, function (data){
           console.log('Success');
           console.log(data)
         });
