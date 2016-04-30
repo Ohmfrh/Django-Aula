@@ -63,8 +63,8 @@ def editar(request):
         idcard.string = string
         idcard.save()
 
-
-    return HttpResponseRedirect('/identificacion/', content_type="application/json")
+    data = 'success'
+    return HttpResponse(data)
 
 
 def identificar(request):
@@ -82,3 +82,9 @@ def identificar(request):
 
     # data['user'] = Usersys.objects.get(pk=userId)
     return HttpResponse(data, content_type='application/json')
+
+
+def borrar(request):
+
+    data = 'success'
+    return HttpResponse(data)
