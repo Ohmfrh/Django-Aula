@@ -3,85 +3,138 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <style>
-        .edit-id {
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-        .edit-id img{
-            height: 25px;
-            cursor: pointer;
-        }
-    </style>
-    <h1 class="title">Identificación</h1>
-    <div class="row">
-        <div class="col-md-5 left">
-            <div class="row"><h2>Lista de usuarios</h2></div>
-            <div class="row">
-                <table>
-                    <tbody>
-                    <tr>
-                        <th>Usuario</th>
-                        <th>Llaves</th>
-                    </tr>
-                    {% for user in users %}
-                        <tr>
-                            <td>{{ user.name }} {{ user.last_names }}</td>
-                            <td>
-                                {% if user.identify_set.all %}
-                                    <ul>
-                                        {% for id in user.identify_set.all %}
-                                            <li class="edit-id">{{ id.type }}: {{ id.string }} <img  id="{{ user.id }}" src="{% static 'img/edit.png' %}"></li>
-                                        {% endfor %}
-                                    </ul>
-                                {% else %}
-                                    No hay llaves asignadas
-                                {% endif %}
-                            </td>
-                        </tr>
+  <style>
+    .edit-id {
+      text-align: center;
+      cursor: pointer;
+    }
+    #myModal{
+      position: absolute;
+      right: 10%;
+    {#            margin-left: -312px;#}
+      height: 500px;
+      top: 60%;
+      margin-top: -250px;
+    }
+  </style>
+  <h1 class="title">Identificación</h1>
+  <div class="row">
+    <div class="col-md-5 left">
+      <div class="row"><h2>Lista de usuarios</h2></div>
+      <div class="row">
+        <table>
+          <tbody>
+          <tr>
+            <th>Usuario</th>
+            <th>Llaves</th>
+            <th>Editar</th>
+          </tr>
+          {% for user in users %}
+            <tr>
+              <td>{{ user.name }} {{ user.last_names }}</td>
+              <td>
+                {% if user.identify_set.all %}
+                  <ul>
+                    {% for id in user.identify_set.all %}
+                      <li>{{ id.type }}: {{ id.string }}</li>
                     {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="col-md-offset-1 col-md-6 right">
-            <div class="row"><h2>Modificaciones</h2></div>
-            <div class="row">
-                <div class="col-md-4">
-                    {% crispy form %}
-                </div>
-            </div>
-        </div>
+                  </ul>
+                {% else %}
+                  No hay llaves asignadas
+                {% endif %}
+              </td>
+              <td><img id="{{ user.id }}" class="edit-id" src="{% static 'img/edit.png' %}"></td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
-
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        {% csrf_token %}
-                        <div id="edit-id">
-
-                        </div>
-                        <button type="submit" class="btn">Edit</button>
-                    </form>
-                </div>
-            </div>
-
+    <div class="col-md-offset-1 col-md-6 right">
+      <div class="row"><h2>Modificaciones</h2></div>
+      <div class="row">
+        <div class="col-md-4">
+          {% crispy form %}
         </div>
+      </div>
     </div>
-    <script>
-        $('img').click(function() {
-            $('#myModal').modal('show');
-            $('#edit-id').html(this.id);
-        });
-    </script>
+  </div>
+
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <div id="edit-id-content">
+
+          </div>
+          <button type="submit" class=" edit-id btn" onclick="send()">Guardar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script>
+    $('img').click(function () {
+      $('#edit-id-content').html('');
+
+      var data = {userId: this.id};
+      $('#myModal').modal('show');
+      $.get("/identificacion/identificar/", data, function (data) {
+        console.log('???');
+        console.log(data);
+
+        for (var i = 0; i < data.length; i++){
+
+          var row = document.createElement('div');
+          var colInput = document.createElement('div');
+          var colButton = document.createElement('div');
+          var input = document.createElement('input');
+          var button = document.createElement('button');
+
+          row.className = 'row';
+          colInput.className = 'col-md-6';
+          colButton.className = 'col-md-5';
+          input.className = 'form-control id-edit-data';
+          input.type = 'text';
+          button.className = 'btn btn-danger pull-right';
+          button.innerHTML = 'Borrar';
+
+
+          colInput.appendChild(input);
+          colButton.appendChild(button);
+          row.appendChild(colInput);
+          row.appendChild(colButton);
+          input.name = data[i]['id'];
+          input.value = data[i]['string'];
+
+
+          $('#edit-id-content').append(row);
+        }
+      });
+    });
+
+    function send() {
+      console.log('Send');
+      var cards = [];
+      $('.id-edit-data').each(function (index) {
+        console.log(this.value);
+        console.log(this.name);
+        cards.push({string: this.value, id: this.name});
+      });
+
+
+      data =  {cards: JSON.stringify(cards)};
+      $.post("/identificacion/editar/", data, function (data) {
+        console.log('success');
+        location.reload();
+      });
+
+    }
+  </script>
 {% endblock %}
