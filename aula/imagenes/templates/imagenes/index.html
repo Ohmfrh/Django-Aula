@@ -4,6 +4,9 @@
 
 
 {% block content %}
+  <style>
+    .top-buffer { margin-top:32px; }
+  </style>
   <h1 class="title">Imágenes</h1>
   <div class="row">
     <div class="col-md-5 left">
@@ -43,7 +46,7 @@
 
         <div class="row toggle-class" id="add-new-image" hidden>
           <div class="col-md-6">
-            {% crispy form %}
+            {% crispy add_image_form %}
           </div>
         </div>
 
@@ -73,24 +76,14 @@
 
       <div id="user-image-list" class="toggle-class" hidden>
         <div class="row">
-          <div class="col-md-12">
-            <button class="btn btn-default">Agregar imagen</button>
+          <div class="col-md-12 top-buffer">
+
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-12">
-            <table>
-              <thead>
-              <tr>
-                <th>Imagen</th>
-                <th>Servidor</th>
-                <th>Localización</th>
-              </tr>
-              </thead>
-              <tbody id="full-image-table">
-              </tbody>
-            </table>
+            {% crispy assign_image_form %}
           </div>
         </div>
       </div>
