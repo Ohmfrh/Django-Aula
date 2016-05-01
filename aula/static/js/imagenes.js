@@ -16,7 +16,7 @@ function showImageList(){
 function showUserImages(userId){
     $('.toggle-class').fadeOut(250, function() {
         data = {name:'test'};
-        $.get( "/imagenes/usuario/",data, function (data){
+        $.get( "/imagenes/lista/",data, function (data){
             console.log('Success');
             console.log(data);
         });
