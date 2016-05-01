@@ -19,8 +19,8 @@ class AddImage(forms.Form):
 
 
 class ImageForm(forms.Form):
-    Imagenes = forms.ModelMultipleChoiceField(queryset=Image.objects.all(), widget=forms.CheckboxSelectMultiple)
-    UserOwner = forms.CharField(required=True, label='Nombre del archivo')
+    Imagenes = forms.ModelMultipleChoiceField(queryset=Image.objects.all(), widget=forms.CheckboxSelectMultiple, required=False)
+    UserOwner = forms.CharField(required=True, label='')
 
     helper = FormHelper()
     helper.form_method = 'POST'
