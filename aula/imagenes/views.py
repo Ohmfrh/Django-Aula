@@ -63,3 +63,6 @@ def agregar(request):
 
 
 def lista(request):
+    data = "From View"
+
+    HttpResponse(data)
