@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from usuarios.models import Usersys
 
+
 # Create your models here.
 class Server(models.Model):
     address = models.CharField(max_length=100)
