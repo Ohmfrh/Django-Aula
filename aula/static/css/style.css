@@ -55,6 +55,17 @@ td, th {
 }
 
 .title {
-margin-left: -30px;
+    margin-left: -30px;
 }
 
+.edit-id {
+    text-align: center;
+    cursor: pointer;
+}
+#myModal{
+    position: absolute;
+    right: 10%;
+    height: 500px;
+    top: 60%;
+    margin-top: -250px;
+}
