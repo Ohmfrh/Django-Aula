@@ -34,12 +34,19 @@
     </div>
     <div class="col-md-offset-1 col-md-6 right">
       <div class="row"><h2>Sección</h2></div>
-      <div id="full-image-list" hidden>
+      <div id="full-image-list" class="toggle-class" hidden>
         <div class="row">
           <div class="col-md-12">
-            <button class="btn btn-default">Agregar imagen</button>
+            <button class="btn btn-default" onclick="addNewImage()">Agregar imagen</button>
           </div>
         </div>
+
+        <div class="row toggle-class" id="add-new-image" hidden>
+          <div class="col-md-6">
+            {% crispy form %}
+          </div>
+        </div>
+
         <div class="row">
           <div class="col-md-12">
             <table>
@@ -64,12 +71,13 @@
         </div>
       </div>
 
-      <div id="user-image-list" hidden>
+      <div id="user-image-list" class="toggle-class" hidden>
         <div class="row">
           <div class="col-md-12">
             <button class="btn btn-default">Agregar imagen</button>
           </div>
         </div>
+
         <div class="row">
           <div class="col-md-12">
             <table>
@@ -92,22 +100,26 @@
 
   <script>
     function showImageList(){
-      $('#user-image-list').fadeOut('fast', function (){
+      $('.toggle-class').fadeOut('fast', function (){
         $('#full-image-list').fadeIn('fast');
       });
 
 
     }
     function showUserImages(userId){
-      $('#full-image-list').fadeOut('fast', function() {
+      $('.toggle-class').fadeOut('fast', function() {
         data = {name:'test'};
         $.get( "/imagenes/usuario/",data, function (data){
           console.log('Success');
-          console.log(data)
+          console.log(data);
         });
         $('#user-image-list').fadeIn('fast');
       });
       console.log('User: '+userId);
+    }
+
+    function addNewImage() {
+      $('#add-new-image').slideDown(500);
     }
   </script>
 {% endblock %}
