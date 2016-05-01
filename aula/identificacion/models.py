@@ -1,5 +1,9 @@
 from __future__ import unicode_literals
 
+import sys    # sys.setdefaultencoding is cancelled by site.py
+reload(sys)    # to re-enable sys.setdefaultencoding()
+sys.setdefaultencoding('utf-8')
+
 from django.db import models
 from usuarios.models import Usersys
 
