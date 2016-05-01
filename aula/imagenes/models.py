@@ -25,4 +25,4 @@ class Image(models.Model):
 
 class UserImage(models.Model):
     user = models.ForeignKey(Usersys)
-    Image = models.ForeignKey(Image)
+    image = models.ForeignKey(Image)
