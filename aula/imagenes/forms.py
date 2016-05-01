@@ -14,5 +14,5 @@ class AddImage(forms.Form):
 
     helper = FormHelper()
     helper.form_method = 'POST'
-    helper.form_action = '/identificacion/editar/'
+    helper.form_action = '/identificacion/agregar/'
     helper.add_input(Submit('Agregar', 'Agregar', css_class='btn-primary'))
