@@ -10,7 +10,7 @@ class Image(models.Model):
     name = models.CharField(max_length=255)
     path = models.CharField(max_length=255)
     server = models.ForeignKey(Server, blank=True, null=True)
-    users = models.ManyToManyField(Usersys, through='UserImage', blank=True, null=True)
+    users = models.ManyToManyField(Usersys, through='UserImage', blank=True)
 
     def __str__(self):
         return self.name
