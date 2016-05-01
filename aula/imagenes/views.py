@@ -14,5 +14,12 @@ def index(request):
 
 
 def usuario(request):
-    data = 'hola'
-    HttpResponse(data)
+    data = 'From View'
+
+    return HttpResponse(data)
+
+
+def agregar(request):
+    data = 'From agregar'
+
+    return HttpResponse(data)
