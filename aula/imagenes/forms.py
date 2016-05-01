@@ -20,12 +20,14 @@ class AddImage(forms.Form):
 
 class ImageForm(forms.Form):
     Imagenes = forms.ModelMultipleChoiceField(queryset=Image.objects.all(), widget=forms.CheckboxSelectMultiple)
+    UserOwner = forms.CharField(required=True, label='Nombre del archivo')
 
     helper = FormHelper()
     helper.form_method = 'POST'
-    helper.form_action = '/imagenes/editar/'
+    helper.form_action = '/imagenes/usuario/'
     helper.add_input(Submit('Agregar', 'Agregar', css_class='btn-primary'))
     helper.layout = Layout(
         Field('Imagenes', css_class="checkbox-inline"),
+        Field('UserOwner', css_class="checkbox-inline", type="hidden"),
     )
     helper.html5_required = False
