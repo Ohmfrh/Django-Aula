@@ -14,5 +14,5 @@ class AddImage(forms.Form):
 
     helper = FormHelper()
     helper.form_method = 'POST'
-    helper.form_action = '/musica/agregar/'
+    helper.form_action = '/imagenes/agregar/'
     helper.add_input(Submit('Agregar', 'Agregar', css_class='btn-primary'))
