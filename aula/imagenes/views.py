@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 from usuarios.models import Usersys
-from imagenes.models import Image
+from imagenes.models import Image, Server, UserImage
 from .forms import AddImage
 
 
@@ -30,10 +30,18 @@ def agregar(request):
 
         if form.is_valid():
             print "Query stuff"
+            path = request.POST['Path']
+            name = request.POST['Name']
+            serverId = request.POST['ServerList']
 
-            return HttpResponseRedirect('/musica/')
+            server = Server.objects.get(pk=serverId)
+            newImage = Image(name=name, path=path, server=server)
+
+            newImage.save()
+            
+            return HttpResponseRedirect('/imagenes/')
     else:
         form = AddImage()
 
     context = {'users': users, 'images': images, 'form': form}
-    return render(request, 'musica/index.html', context)
+    return render(request, 'imagenes/index.html', context)
