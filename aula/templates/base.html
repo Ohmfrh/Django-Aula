@@ -11,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/simple-sidebar.css' %}">
 </head>
-<body>
 
 <body>
 <div id="wrapper">
@@ -68,6 +67,28 @@
 
 </div>
 
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">{% block modal_title %}{% endblock %}</h4>
+        </div>
+        <div class="modal-body">
+          {% block modal_body %}
+
+          {% endblock %}
+          <button type="submit" class="edit-id btn" onclick="send()">Guardar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
 <script>
     resizeNotes();
     $(window).resize(function() {
@@ -113,6 +134,5 @@
         $.post( "/usuarios/nuevo/",data);
     }
 </script>
-</body>
 </body>
 </html>
