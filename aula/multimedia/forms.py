@@ -22,3 +22,18 @@ class ServerForm(forms.Form):
     helper.form_method = 'POST'
     helper.form_action = '/multimedia/crear/'
     helper.add_input(Submit('Agregar', 'Agregar', css_class='btn-primary'))
+
+    
+class EditServerForm(forms.Form):
+    my_default_errors = {
+        'required': 'Campo requerido',
+        'invalid': 'Valores inválidos'
+    }
+    direccion = forms.CharField(label='Dirección', max_length=100, error_messages=my_default_errors)
+    usuario = forms.CharField(label='Usuario', max_length=100, error_messages=my_default_errors)
+    contrasena = forms.CharField(label='Contraseña', max_length=100, error_messages=my_default_errors)
+
+    helper = FormHelper()
+    helper.form_method = 'POST'
+    helper.form_action = '/multimedia/editar/'
+    helper.add_input(Submit('Agregar', 'Agregar', css_class='btn-primary'))
