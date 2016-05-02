@@ -5,7 +5,9 @@ from crispy_forms.layout import Submit, Layout, Field
 from crispy_forms.bootstrap import (
     PrependedText, PrependedAppendedText, FormActions)
 
-from imagenes.models import Server, Image
+from .models import Image
+from multimedia.models import Server
+
 
 class AddImage(forms.Form):
     Name = forms.CharField(required=True, label='Nombre del archivo')
