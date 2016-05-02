@@ -36,4 +36,4 @@ class EditServerForm(forms.Form):
     helper = FormHelper()
     helper.form_method = 'POST'
     helper.form_action = '/multimedia/editar/'
-    helper.add_input(Submit('Agregar', 'Agregar', css_class='btn-primary'))
+    helper.add_input(Submit('Editar', 'Editar', css_class='btn-primary'))
