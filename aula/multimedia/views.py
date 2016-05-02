@@ -2,15 +2,16 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from .models import Server
-from .forms import ServerForm
+from .forms import ServerForm, EditServerForm
 
 
 # Create your views here.
 def index(request):
     servers = Server.objects.all()
     form = ServerForm()
+    formEdit = EditServerForm()
 
-    context = {'servers': servers, 'form': form}
+    context = {'servers': servers, 'form': form, 'formEdit': formEdit}
     return render(request, 'multimedia/index.html', context)
 
 
