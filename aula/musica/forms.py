@@ -8,6 +8,7 @@ from crispy_forms.bootstrap import (
 from .models import Song
 from multimedia.models import Server
 
+
 class AddSong(forms.Form):
     Name = forms.CharField(required=True, label='Nombre del archivo')
     ServerList = forms.ModelChoiceField(required=True, queryset=Server.objects.all())
@@ -19,7 +20,7 @@ class AddSong(forms.Form):
     helper.add_input(Submit('Agregar', 'Agregar', css_class='btn-primary'))
 
 
-class ImageForm(forms.Form):
+class SongForm(forms.Form):
     Canciones = forms.ModelMultipleChoiceField(queryset=Song.objects.all(), widget=forms.CheckboxSelectMultiple, required=False)
     UserOwner = forms.CharField(required=True, label='')
 
