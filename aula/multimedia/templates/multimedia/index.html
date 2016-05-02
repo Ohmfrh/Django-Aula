@@ -22,10 +22,12 @@
             <th>Editar</th>
           </tr>
           {% for server in servers %}
-            <td>{{ server.address }}</td>
-            <td>{{ server.user }}</td>
-            <td>{{ server.password }}</td>
-            <td><a href="#"><img src = {% static 'img/edit.png' %}></a></td>
+            <tr>
+              <td>{{ server.address }}</td>
+              <td>{{ server.user }}</td>
+              <td>{{ server.password }}</td>
+              <td><a href="#"><img src = {% static 'img/edit.png' %}></a></td>
+            </tr>
           {% endfor %}
           </tbody>
         </table>
