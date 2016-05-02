@@ -26,14 +26,11 @@ function showUserSongs(userId){
                     $('#id_Canciones_'+data[i]['songId']).prop('checked', true);
                 }
             }
-
             $('#id_UserOwner').val(userId)
         });
 
         $('#user-song-list').fadeIn('fast');
     },250);
-
-
 }
 
 function addNewSong() {

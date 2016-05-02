@@ -8,7 +8,17 @@ function addServer() {
 function editServer(serverId) {
     console.log(serverId);
     console.log('Edit Server');
-    $('#id_dirEdit').val('test1');
-    $('#id_usrEdit').val('test2');
-    $('#id_passEdit').val('test3');
+    $('#id_dirEdit').val('');
+    $('#id_usrEdit').val('');
+    $('#id_passEdit').val('');
+    $('#id_serverId').val(serverId);
+
+    data = {serverId: serverId};
+
+    $.get( "/multimedia/servidor/",data, function (data){
+        data = JSON.parse(data);
+        $('#id_dirEdit').val(data['address']);
+        $('#id_usrEdit').val(data['user']);
+        $('#id_passEdit').val(data['password']);
+    });
 }

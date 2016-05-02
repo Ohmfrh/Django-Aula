@@ -1,4 +1,6 @@
-from django.http import HttpResponseRedirect
+import json
+
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 
 from .models import Server
@@ -16,7 +18,7 @@ def index(request):
 
 
 def crear(request):
-    print request.POST
+    formEdit = EditServerForm
     servers = Server.objects.all()
     if request.method == 'POST':
         form = ServerForm(request.POST)
@@ -35,8 +37,42 @@ def crear(request):
     else:
         form = ServerForm()
 
-
-    context = {'servers': servers, 'form': form}
+    context = {'servers': servers, 'form': form, 'formEdit': formEdit}
     return render(request, 'multimedia/index.html', context)
 
 
+def editar(request):
+    servers = Server.objects.all()
+    form = ServerForm()
+    if request.method == 'POST':
+        formEdit = EditServerForm(request.POST)
+
+        if formEdit.is_valid():
+            print request.POST
+            serverId = request.POST['serverId']
+            address = request.POST['dirEdit']
+            password = request.POST['passEdit']
+            user = request.POST['usrEdit']
+
+            server = Server.objects.get(pk=serverId)
+            server.address = address
+            server.password = password
+            server.user = user
+
+            server.save()
+
+            return HttpResponseRedirect('/multimedia/')
+    else:
+        formEdit = EditServerForm()
+
+    context = {'servers': servers, 'form': form, 'formEdit': formEdit}
+    return render(request, 'multimedia/index.html', context)
+
+
+def servidor(request):
+    server = Server.objects.get(pk=request.GET['serverId'])
+    data = {'address': server.address, 'user': server.user, 'password': server.password}
+
+    data = json.dumps(data)
+
+    return HttpResponse(data)
