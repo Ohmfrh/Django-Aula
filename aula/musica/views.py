@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 from usuarios.models import Usersys
 from musica.models import Song
-# from .forms import AddImage, ImageForm
+from .forms import AddSong, SongForm
 
 
 # Create your views here.
@@ -13,10 +13,10 @@ def index(request):
     users = Usersys.objects.all()
     songs = Song.objects.all()
 
-    # add_image_form = AddImage()
-    # assign_image_form = ImageForm()
+    add_song_form = AddSong()
+    assign_song_form = SongForm()
 
-    context = {'users': users, 'songs': songs}
+    context = {'users': users, 'songs': songs, 'add_song_form': add_song_form, 'assign_song_form': assign_song_form}
     return render(request, 'musica/index.html', context)
 
 
