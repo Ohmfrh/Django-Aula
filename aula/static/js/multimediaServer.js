@@ -20,5 +20,10 @@ function editServer(serverId) {
         $('#id_dirEdit').val(data['address']);
         $('#id_usrEdit').val(data['user']);
         $('#id_passEdit').val(data['password']);
+        $('#delete-server').attr('name', serverId)
     });
+}
+
+function deleteServer(serverId) {
+    console.log('Delete: ' + serverId)
 }

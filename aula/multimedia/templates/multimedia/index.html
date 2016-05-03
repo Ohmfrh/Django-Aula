@@ -20,6 +20,7 @@
             <th>Usuario</th>
             <th>Contraseña</th>
             <th>Editar</th>
+            <th>Eliminar</th>
           </tr>
           {% for server in servers %}
             <tr>
@@ -37,8 +38,14 @@
       <div class="row"><h2>Modificaciones</h2></div>
       <div class="row">
         <div class="col-md-6">
-          {% crispy form %}
-          {% crispy formEdit %}
+          <div id="new-server-form">
+            {% crispy form %}
+          </div>
+          <div id="edit-server-form">
+
+            {% crispy formEdit %}
+            <a id="delete-server" href="#" class="pull-right"  onclick="deleteServer(this.name)" name="">Eliminar servidor<img src="{% static 'img/delete.png' %}" name="{{ server.pk }}"></a>
+          </div>
         </div>
       </div>
     </div>
