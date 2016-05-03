@@ -86,7 +86,7 @@ def lista(request):
     images = images.filter(users=userId)
 
     for row in images:
-        list.append ({'imageId': row.pk})
+        list.append({'imageId': row.pk})
 
     # data = serializers.serialize("json", list)
     data = json.dumps(list)
