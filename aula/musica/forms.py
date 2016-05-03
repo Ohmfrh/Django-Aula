@@ -5,31 +5,31 @@ from crispy_forms.layout import Submit, Layout, Field
 from crispy_forms.bootstrap import (
     PrependedText, PrependedAppendedText, FormActions)
 
-from .models import Image
+from .models import Song
 from multimedia.models import Server
 
 
-class AddImage(forms.Form):
+class AddSong(forms.Form):
     Name = forms.CharField(required=True, label='Nombre del archivo')
     ServerList = forms.ModelChoiceField(required=True, queryset=Server.objects.all())
     Path = forms.CharField(required=True, label='Path')
 
     helper = FormHelper()
     helper.form_method = 'POST'
-    helper.form_action = '/imagenes/agregar/'
+    helper.form_action = '/musica/agregar/'
     helper.add_input(Submit('Agregar', 'Agregar', css_class='btn-primary'))
 
 
-class ImageForm(forms.Form):
-    Imagenes = forms.ModelMultipleChoiceField(queryset=Image.objects.all(), widget=forms.CheckboxSelectMultiple, required=False)
+class SongForm(forms.Form):
+    Canciones = forms.ModelMultipleChoiceField(queryset=Song.objects.all(), widget=forms.CheckboxSelectMultiple, required=False)
     UserOwner = forms.CharField(required=True, label='')
 
     helper = FormHelper()
     helper.form_method = 'POST'
-    helper.form_action = '/imagenes/usuario/'
+    helper.form_action = '/musica/usuario/'
     helper.add_input(Submit('Agregar', 'Agregar', css_class='btn-primary'))
     helper.layout = Layout(
-        Field('Imagenes', css_class="checkbox-inline"),
+        Field('Canciones', css_class="checkbox-inline"),
         Field('UserOwner', css_class="checkbox-inline", type="hidden"),
     )
     helper.html5_required = False

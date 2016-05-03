@@ -1,7 +1,7 @@
 /**
- * Created by daniel on 30/04/16.
+ * Created by daniel on 1/05/16.
  */
-function showImageList(){
+function showSongList(){
     $('.toggle-class').fadeOut(250, function (){
         console.log(this);
         console.log('DONE');
@@ -9,33 +9,33 @@ function showImageList(){
     });
 
     setTimeout(function () {
-        $('#full-image-list').fadeIn('fast');
+        $('#full-song-list').fadeIn('fast');
     },250);
 }
 
-function showUserImages(userId){
+function showUserSongs(userId){
     $('.toggle-class').fadeOut(250);
     setTimeout(function () {
         data = {userId: userId};
-        $.get( "/imagenes/lista/",data, function (data){
+        $.get( "/musica/lista/",data, function (data){
             $('input:checkbox').removeAttr('checked');
 
             if (data.length != 0) {
                 for (var i=0; i<data.length; i++) {
                     console.log(data[i]);
-                    $('#id_Imagenes_'+data[i]['imageId']).prop('checked', true);
+                    $('#id_Canciones_'+data[i]['songId']).prop('checked', true);
                 }
             }
 
             $('#id_UserOwner').val(userId)
         });
 
-        $('#user-image-list').fadeIn('fast');
+        $('#user-song-list').fadeIn('fast');
     },250);
 
 
 }
 
-function addNewImage() {
-    $('#add-new-image').slideDown(250);
+function addNewSong() {
+    $('#add-new-song').slideDown(250);
 }
