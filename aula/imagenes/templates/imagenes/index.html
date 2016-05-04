@@ -4,6 +4,9 @@
 
 
 {% block content %}
+  <style>
+    .top-buffer { margin-top:32px; }
+  </style>
   <h1 class="title">Imágenes</h1>
   <div class="row">
     <div class="col-md-5 left">
@@ -43,7 +46,7 @@
 
         <div class="row toggle-class" id="add-new-image" hidden>
           <div class="col-md-6">
-            {% crispy form %}
+            {% crispy add_image_form %}
           </div>
         </div>
 
@@ -55,6 +58,7 @@
                 <th>Imagen</th>
                 <th>Servidor</th>
                 <th>Localización</th>
+                <th>Editar</th>
               </tr>
               </thead>
               <tbody id="full-image-table">
@@ -63,6 +67,7 @@
                   <td>{{ image.name }}</td>
                   <td>{{ image.server }}</td>
                   <td>{{ image.path }}</td>
+                  <td><a href="#"><img src="{% static 'img/edit.png' %}"  onclick="editImage(this.name)" name="{{ image.pk }}"></a></td>
                 </tr>
               {% endfor %}
               </tbody>
@@ -71,55 +76,31 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-md-12 top-buffer">
+
+        </div>
+      </div>
+      <div class="row toggle-class" id="edit-image" hidden>
+        <div class="col-md-12">
+          {% crispy edit_image_form %}
+        </div>
+      </div>
       <div id="user-image-list" class="toggle-class" hidden>
         <div class="row">
           <div class="col-md-12">
-            <button class="btn btn-default">Agregar imagen</button>
+            {% crispy assign_image_form %}
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-12">
-            <table>
-              <thead>
-              <tr>
-                <th>Imagen</th>
-                <th>Servidor</th>
-                <th>Localización</th>
-              </tr>
-              </thead>
-              <tbody id="full-image-table">
-              </tbody>
-            </table>
-          </div>
-        </div>
       </div>
+
+
 
     </div>
   </div>
+{% endblock %}
 
-  <script>
-    function showImageList(){
-      $('.toggle-class').fadeOut('fast', function (){
-        $('#full-image-list').fadeIn('fast');
-      });
-
-
-    }
-    function showUserImages(userId){
-      $('.toggle-class').fadeOut('fast', function() {
-        data = {name:'test'};
-        $.get( "/imagenes/usuario/",data, function (data){
-          console.log('Success');
-          console.log(data);
-        });
-        $('#user-image-list').fadeIn('fast');
-      });
-      console.log('User: '+userId);
-    }
-
-    function addNewImage() {
-      $('#add-new-image').slideDown(500);
-    }
-  </script>
+{% block scripts %}
+  <script src="{% static 'js/imagenes.js' %}"></script>
 {% endblock %}

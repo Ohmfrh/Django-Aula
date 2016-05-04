@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'identificacion',
     'musica',
     'imagenes',
+    'multimedia',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -91,6 +92,9 @@ DATABASES = {
         'PASSWORD': '12345',
         'HOST': 'localhost',
         'PORT': '',
+        'OPTIONS': {
+         "init_command": "SET foreign_key_checks = 0;",
+    },
     }
 }
 
@@ -138,3 +142,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_prod')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
