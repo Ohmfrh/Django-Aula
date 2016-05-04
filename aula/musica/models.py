@@ -9,6 +9,9 @@ from usuarios.models import Usersys
 class Song(models.Model):
     name = models.CharField(max_length=255)
     path = models.CharField(max_length=255)
+    artist = models.CharField(max_length=255)
+    album = models.CharField(max_length=255)
+    image = models.CharField(max_length=255)
     server = models.ForeignKey(Server, blank=True, null=True)
     users = models.ManyToManyField(Usersys, through='UserSong', blank=True)
 

@@ -13,6 +13,9 @@ class AddSong(forms.Form):
     Name = forms.CharField(required=True, label='Nombre del archivo')
     ServerList = forms.ModelChoiceField(required=True, queryset=Server.objects.all())
     Path = forms.CharField(required=True, label='Path')
+    Artist = forms.CharField(required=True, label='Artist')
+    Album = forms.CharField(required=True, label='Album')
+    Image = forms.CharField(required=True, label='Image')
 
     helper = FormHelper()
     helper.form_method = 'POST'

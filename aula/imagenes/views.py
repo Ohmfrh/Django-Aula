@@ -65,9 +65,12 @@ def agregar(request):
             path = request.POST['Path']
             name = request.POST['Name']
             serverId = request.POST['ServerList']
+            artist = request.POST['Artist']
+            album = request.POST['Album']
+            image = request.POST['Image']
 
             server = Server.objects.get(pk=serverId)
-            newImage = Image(name=name, path=path, server=server)
+            newImage = Image(name=name, path=path, server=server, artist=artist, album=album, image=image)
 
             newImage.save()
             
