@@ -37,10 +37,10 @@
       <div class="row"><h2>Modificaciones</h2></div>
       <div class="row">
         <div class="col-md-6">
-          <div id="new-server-form" class="hide-class">
+          <div id="new-server-form" class="hide-class" hidden>
             {% crispy form %}
           </div>
-          <div id="edit-server-form" class="hide-class">
+          <div id="edit-server-form" class="hide-class" hidden>
 
             {% crispy formEdit %}
             <a id="delete-server" href="#" class="pull-right"  onclick="deleteServer(this.name)" name="">Eliminar servidor<img src="{% static 'img/delete.png' %}" name="{{ server.pk }}"></a>
