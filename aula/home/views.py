@@ -23,7 +23,7 @@ def pipeline(request):
         pipe.delete()
     except:
         data = {}
-        data['action'] = "Nada"
+        data['accion'] = "Nada"
         data = json.dumps(data)
 
 
