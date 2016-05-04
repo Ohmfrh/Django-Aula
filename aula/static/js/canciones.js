@@ -36,3 +36,30 @@ function showUserSongs(userId){
 function addNewSong() {
     $('#add-new-song').slideDown(250);
 }
+
+function editSong(songId) {
+
+    $('#id_editName').val('');
+    $('#id_editServerList').val('0');
+    $('#id_editPath').val('');
+    $('#id_editArtist').val('');
+    $('#id_editAlbum').val('');
+    $('#id_editImage').val('');
+    $('#id_editId').val('');
+
+    data = {songId: songId}
+
+    $.get( "/musica/cancion/",data, function (data){
+        console.log('SUCCESS');
+        console.log(data);
+        $('#id_editName').val(data['name']);
+        $('#id_editServerList').val(data['server']);
+        $('#id_editPath').val(data['path']);
+        $('#id_editId').val(data['id']);
+        $('#id_editAlbum').val(data['album']);
+        $('#id_editImage').val(data['image']);
+        $('#id_editArtist').val(data['artist']);
+
+        $('#edit-song').fadeIn(250);
+    });
+}

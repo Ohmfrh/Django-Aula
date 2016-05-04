@@ -58,6 +58,7 @@
                 <th>Canción</th>
                 <th>Servidor</th>
                 <th>Localización</th>
+                <th>Editar</th>
               </tr>
               </thead>
               <tbody id="full-song-table">
@@ -66,6 +67,7 @@
                   <td>{{ song.name }}</td>
                   <td>{{ song.server }}</td>
                   <td>{{ song.path }}</td>
+                  <td><a href="#"><img src="{% static 'img/edit.png' %}"  onclick="editSong(this.name)" name="{{ song.pk }}"></a></td>
                 </tr>
               {% endfor %}
               </tbody>
@@ -74,13 +76,22 @@
         </div>
       </div>
 
-      <div id="user-song-list" class="toggle-class" hidden>
-        <div class="row">
-          <div class="col-md-12 top-buffer">
 
+      <div class="row">
+        <div class="col-md-12 top-buffer">
+
+        </div>
+      </div>
+
+      <div id="edit-song" class="toggle-class" hidden>
+        <div class="row">
+          <div class="col-md-12">
+            {% crispy edit_song_form %}
           </div>
         </div>
+      </div>
 
+      <div id="user-song-list" class="toggle-class" hidden>
         <div class="row">
           <div class="col-md-12">
             {% crispy assign_song_form %}

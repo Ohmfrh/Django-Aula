@@ -33,3 +33,15 @@ class ImageForm(forms.Form):
         Field('UserOwner', css_class="checkbox-inline", type="hidden"),
     )
     helper.html5_required = False
+
+
+class EditImage(forms.Form):
+    editName = forms.CharField(required=True, label='Nombre del archivo')
+    editServerList = forms.ModelChoiceField(required=True, queryset=Server.objects.all())
+    editPath = forms.CharField(required=True, label='Path')
+    editId = forms.CharField(required=True, label='')
+
+    helper = FormHelper()
+    helper.form_method = 'POST'
+    helper.form_action = '/imagenes/editar/'
+    helper.add_input(Submit('Editar', 'Editar', css_class='btn-primary'))

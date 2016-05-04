@@ -39,3 +39,24 @@ function showUserImages(userId){
 function addNewImage() {
     $('#add-new-image').slideDown(250);
 }
+
+function editImage(imageId) {
+    $('#id_editName').val('');
+    $('#id_editServerList').val('0');
+    $('#id_editPath').val('');
+    $('#id_editId').val('');
+
+    data = {imageId: imageId};
+
+    $.get( "/imagenes/imagen/",data, function (data){
+        console.log('SUCCESS');
+        console.log(data);
+        $('#id_editName').val(data['name']);
+        $('#id_editServerList').val(data['server']);
+        $('#id_editPath').val(data['path']);
+        $('#id_editId').val(data['id']);
+        $('#edit-image').fadeIn(250);
+    });
+
+    console.log(imageId);
+}

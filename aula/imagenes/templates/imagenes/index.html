@@ -58,6 +58,7 @@
                 <th>Imagen</th>
                 <th>Servidor</th>
                 <th>Localización</th>
+                <th>Editar</th>
               </tr>
               </thead>
               <tbody id="full-image-table">
@@ -66,6 +67,7 @@
                   <td>{{ image.name }}</td>
                   <td>{{ image.server }}</td>
                   <td>{{ image.path }}</td>
+                  <td><a href="#"><img src="{% static 'img/edit.png' %}"  onclick="editImage(this.name)" name="{{ image.pk }}"></a></td>
                 </tr>
               {% endfor %}
               </tbody>
@@ -74,19 +76,26 @@
         </div>
       </div>
 
-      <div id="user-image-list" class="toggle-class" hidden>
-        <div class="row">
-          <div class="col-md-12 top-buffer">
+      <div class="row">
+        <div class="col-md-12 top-buffer">
 
-          </div>
         </div>
-
+      </div>
+      <div class="row toggle-class" id="edit-image" hidden>
+        <div class="col-md-12">
+          {% crispy edit_image_form %}
+        </div>
+      </div>
+      <div id="user-image-list" class="toggle-class" hidden>
         <div class="row">
           <div class="col-md-12">
             {% crispy assign_image_form %}
           </div>
         </div>
+
       </div>
+
+
 
     </div>
   </div>
