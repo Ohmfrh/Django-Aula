@@ -76,3 +76,14 @@ def servidor(request):
     data = json.dumps(data)
 
     return HttpResponse(data)
+
+
+def eliminar(request):
+    print "EN ELIMINAR"
+    serverId = request.POST['serverId']
+
+    server = Server.objects.get(pk=serverId)
+    server.delete()
+
+    data = {'message': 'done'}
+    return HttpResponse(data)

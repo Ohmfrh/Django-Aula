@@ -37,5 +37,12 @@ function editServer(serverId) {
 }
 
 function deleteServer(serverId) {
-    console.log('Delete: ' + serverId)
+    console.log('Delete: ' + serverId);
+
+    data = {serverId: serverId};
+    $.post( "/multimedia/eliminar/",data, function (data){
+        console.log(data);
+        console.log('Done');
+        location.reload()
+    });
 }
