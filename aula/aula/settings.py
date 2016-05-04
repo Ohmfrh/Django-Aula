@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'crispy_forms',
+    'corsheaders',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -58,6 +59,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'aula.urls'
@@ -147,3 +150,5 @@ GRAPH_MODELS = {
   'all_applications': True,
   'group_models': True,
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
